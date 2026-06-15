@@ -3,8 +3,8 @@ services:
     build: .
     ports:
       - "8888:80"
-    env_file:
-      - .env
+    # No env_file: Laravel loads .env itself. Injecting it here would set an empty
+    # APP_KEY as a real env var, which Laravel won't override from the generated .env.
     volumes:
       - .:/var/www/html
       # Keep the image's installed dependencies; don't let the host bind mount hide them.

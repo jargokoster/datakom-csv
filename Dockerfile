@@ -31,6 +31,7 @@ EXPOSE 80
 
 CMD chown -R www-data:www-data storage bootstrap/cache database \
 	&& chmod -R 775 storage bootstrap/cache database \
+	&& (grep -q '^APP_KEY=base64:' .env || php artisan key:generate --force) \
 	&& php artisan migrate --force \
 	&& php artisan openapi:generate \
 	&& /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
