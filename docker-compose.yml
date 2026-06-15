@@ -7,6 +7,8 @@ services:
       - .env
     volumes:
       - .:/var/www/html
+      # Keep the image's installed dependencies; don't let the host bind mount hide them.
+      - /var/www/html/vendor
       - sqlite-data:/var/www/html/database
 
 volumes:
