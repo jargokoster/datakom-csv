@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8888:80"
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/html
+      - sqlite-data:/var/www/html/database
+
+volumes:
+  sqlite-data:
